@@ -1,0 +1,162 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+  
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content
+        ="width=device-width, initial-scale=1.0"> 
+    <title>Dice uruttu Game</title> 
+<script>
+        // Function to change background color
+        function changeBackgroundColor() {
+            // Array of colors to choose from
+            var colors = ["lightblue", "lightgreen", "lightpink", "lightyellow"];
+            
+            // Get a random index from the colors array
+            var randomIndex = Math.floor(Math.random() * colors.length);
+            
+            // Set the background color of the body to the randomly chosen color
+            document.body.style.backgroundColor = colors[randomIndex];
+        }
+
+        // Call changeBackgroundColor function every 3 seconds
+        setInterval(changeBackgroundColor, 3000); // Change color every 3 seconds (3000 milliseconds)
+    </script>
+  
+    <style> 
+        .container { 
+            width: 60%; 
+            margin: auto; 
+            text-align: center; 
+        } 
+  
+        .dice { 
+            text-align: center; 
+            display: inline-block; 
+            margin: 12px; 
+        } 
+  
+        body { 
+    
+            background-color: #8625a35d; 
+            margin: 0; 
+        } 
+  
+        h1 { 
+            margin: 30px; 
+            font-family: "Lobster", cursive; 
+            text-shadow: 5px 0 #6f4cc0; 
+            font-size: 4.5rem; 
+            color: #bb207a; 
+            text-align: center; 
+        } 
+  
+        p { 
+            font-size: 2rem; 
+            color: #1f078b; 
+            font-family: "Indie Flower", cursive; 
+            width: 200px;
+        } 
+  
+        img { 
+            width: 100%; 
+        } 
+  
+        .bottom { 
+            padding-top: 30px; 
+        } 
+  
+        .butn { 
+            background: #4ecca3; 
+            font-family: "Indie Flower", cursive; 
+            border-radius: 7px; 
+            color: #ffff; 
+            font-size: 30px; 
+            padding: 16px 25px 16px 25px; 
+            text-decoration: none; 
+        } 
+  
+        .butn:hover { 
+            background: #232931; 
+            text-decoration: none; 
+        } 
+    </style> 
+</head> 
+  
+<body> 
+    <div class="container"> 
+        <h1>uruttalam vanga</h1> 
+  
+        <div class="dice"> 
+            <p class="Player1">Player 1</p> 
+            <img class="img1" src="dice6.png"> 
+        </div> 
+  
+        <div class="dice"> 
+            <p class="Player2">Player 2</p> 
+            <img class="img2" src="dice6.png"> 
+        </div> 
+    </div> 
+  
+    <div class="container bottom"> 
+        <button type="button" class="butn"
+            onClick="rollTheDice()"> 
+            uruttu dice eh
+        </button> 
+    </div> 
+    <div class="container bottom"> 
+        <button type="button" class="butn"
+            onClick="editNames()"> 
+            Edit Names 
+        </button> 
+    </div> 
+  
+    <script> 
+  
+        // Player name 
+        var player1 = "Player 1"; 
+        var player2 = "Player 2"; 
+  
+        // Function to change the player name 
+        function editNames() { 
+            player1 = prompt("Change Player1 name"); 
+            player2 = prompt("Change player2 name"); 
+  
+            document.querySelector("p.Player1") 
+                            .innerHTML = player1; 
+                              
+            document.querySelector("p.Player2") 
+                            .innerHTML = player2; 
+        } 
+  
+        // Function to roll the dice 
+        function rollTheDice() { 
+            setTimeout(function () { 
+                var randomNumber1 = Math.floor(Math.random() * 6) + 1; 
+                var randomNumber2 = Math.floor(Math.random() * 6) + 1; 
+  
+                document.querySelector(".img1").setAttribute("src", 
+                    "dice" + randomNumber1 + ".png"); 
+  
+                document.querySelector(".img2").setAttribute("src", 
+                    "dice" + randomNumber2 + ".png"); 
+  
+                if (randomNumber1 === randomNumber2) { 
+                    document.querySelector("h1").innerHTML = "Draw!"; 
+                } 
+  
+                else if (randomNumber1 < randomNumber2) { 
+                    document.querySelector("h1").innerHTML 
+                        = (player2 + " WINS!"); 
+                } 
+  
+                else { 
+                    document.querySelector("h1").innerHTML 
+                        = (player1 + " WINS!"); 
+                } 
+            }, 2500); 
+        } 
+    </script> 
+</body> 
+  
+</html>
